@@ -10,5 +10,9 @@ hop(3) This text will also be ignored because it is not a command.
 print(This will be skipped over)
 print(This will be printed)
 ```
-### Strings
-There are currently no air qoutes in strings.
+### Variables
+```
+var(variable=1) variables include spaces.
+print(variable)
+hop(variable) This will create an infinite loop.
+```
