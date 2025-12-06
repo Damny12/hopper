@@ -17,6 +17,60 @@ def check(currentLine=int):
     newLine = currentLine+1
     output=""
     pointer=0
+    if "pow(" in line:
+        pointer = line.index("(")+1
+        while line[pointer] != ",":
+            output+=line[pointer]
+            pointer+=1
+        pointer = line.index(",")+1
+        memory = varNames.index(output)
+        output = ""
+        while line[pointer] != ")":
+            output+=line[pointer]
+            pointer+=1
+        if "!" in output:
+            output = varValues[varNames.index(output.lstrip("!"))]
+        try:
+            varValues[memory] = pow(varValues[memory],int(output))
+        except:
+            print("This is not a number.")
+            sys.exit("Invalid type")
+    if "div(" in line:
+        pointer = line.index("(")+1
+        while line[pointer] != ",":
+            output+=line[pointer]
+            pointer+=1
+        pointer = line.index(",")+1
+        memory = varNames.index(output)
+        output = ""
+        while line[pointer] != ")":
+            output+=line[pointer]
+            pointer+=1
+        if "!" in output:
+            output = varValues[varNames.index(output.lstrip("!"))]
+        try:
+            varValues[memory] /= int(output)
+        except:
+            print("This is not a number.")
+            sys.exit("Invalid type")
+    if "mult(" in line:
+        pointer = line.index("(")+1
+        while line[pointer] != ",":
+            output+=line[pointer]
+            pointer+=1
+        pointer = line.index(",")+1
+        memory = varNames.index(output)
+        output = ""
+        while line[pointer] != ")":
+            output+=line[pointer]
+            pointer+=1
+        if "!" in output:
+            output = varValues[varNames.index(output.lstrip("!"))]
+        try:
+            varValues[memory] *= int(output)
+        except:
+            print("This is not a number.")
+            sys.exit("Invalid type")
     if "add(" in line:
         pointer = line.index("(")+1
         while line[pointer] != ",":
@@ -81,14 +135,14 @@ def check(currentLine=int):
         varNames.append(output)
         pointer = line.index("=") +1
         output=""
-        while pointer < len(line)-1:
+        while line[pointer] != ")":
             output+=line[pointer]
             pointer+=1
         try:
             output = int(output)
             varValues.append(output)
         except:
-            varValues.append(output)    
+            varValues.append(output)  
 
 while currentLine < len(codeLines):
     check(currentLine)
