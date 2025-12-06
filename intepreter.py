@@ -35,19 +35,21 @@ def check(currentLine=int):
         print(output)
     if "var(" in line:
         pointer = line.index("(") +1
-        while line[pointer] != ")":
+        while line[pointer] != "=":
             output+=line[pointer]
             pointer+=1
         varNames.append(output)
         pointer = line.index("=") +1
-        while pointer < len(line):
+        output=""
+        while pointer < len(line)-1:
             output+=line[pointer]
             pointer+=1
         try:
-            int(output)
-            varNames.append(output)
+            output = int(output)
+            varValues.append(output)
         except:
             varValues.append(output)    
+    print(varNames,varValues)
 
 while currentLine < len(codeLines):
     check(currentLine)

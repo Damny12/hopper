@@ -1,3 +1,5 @@
 hop(2)
 print(wow)
 print(hello)
+var(new=hello)
+var(why=1)
