@@ -22,6 +22,9 @@ def check(currentLine=int):
         while line[pointer] != ")":
             output+=line[pointer]
             pointer+=1
+        if "!" in output:
+            if output.lstrip("!") in varNames:
+                output = varValues[varNames.index(output.lstrip("!"))]
         if int(output) > len(codeLines) or int(output) < 0:
             print("This is an invalid line!")
             sys.exit("Invalid line")
@@ -32,6 +35,9 @@ def check(currentLine=int):
         while line[pointer] != ")":
             output+=line[pointer]
             pointer+=1
+        if "!" in output:
+            if output.lstrip("!") in varNames:
+                output = varValues[varNames.index(output.lstrip("!"))]
         print(output)
     if "var(" in line:
         pointer = line.index("(") +1
