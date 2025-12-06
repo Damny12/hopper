@@ -17,6 +17,23 @@ def check(currentLine=int):
     newLine = currentLine+1
     output=""
     pointer=0
+    if "add(" in line:
+        pointer = line.index("(")+1
+        while line[pointer] != ",":
+            output+=line[pointer]
+            pointer+=1
+        pointer = line.index(",")+1
+        memory = varNames.index(output)
+        output = ""
+        while line[pointer] != ")":
+            output+=line[pointer]
+            pointer+=1
+        if "!" in output:
+            output = varValues[varNames.index(output.lstrip("!"))]
+        try:
+            varValues[memory] += int(output)
+        except:
+            varValues[memory] += output
     if "input(" in line:
         pointer = line.index("(")+1
         while line[pointer] != ",":
