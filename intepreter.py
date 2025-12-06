@@ -55,7 +55,6 @@ def check(currentLine=int):
             varValues.append(output)
         except:
             varValues.append(output)    
-    print(varNames,varValues)
 
 while currentLine < len(codeLines):
     check(currentLine)
