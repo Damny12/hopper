@@ -8,6 +8,8 @@ except:
 code = file.read()
 codeLines = code.splitlines()
 currentLine = 0
+varNames = []
+varValues = []
 
 def check(currentLine=int):
     line = codeLines[currentLine]
@@ -31,6 +33,21 @@ def check(currentLine=int):
             output+=line[pointer]
             pointer+=1
         print(output)
+    if "var(" in line:
+        pointer = line.index("(") +1
+        while line[pointer] != ")":
+            output+=line[pointer]
+            pointer+=1
+        varNames.append(output)
+        pointer = line.index("=") +1
+        while pointer < len(line):
+            output+=line[pointer]
+            pointer+=1
+        try:
+            int(output)
+            varNames.append(output)
+        except:
+            varValues.append(output)    
 
 while currentLine < len(codeLines):
     check(currentLine)
