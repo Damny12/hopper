@@ -1,4 +1,4 @@
-var(hello=4)
+input(input a number higher than 2 ,hello)
 print(!hello)
 hop(!hello)
 print(no)
