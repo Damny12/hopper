@@ -17,6 +17,21 @@ def check(currentLine=int):
     newLine = currentLine+1
     output=""
     pointer=0
+    if "input(" in line:
+        pointer = line.index("(")+1
+        while line[pointer] != ",":
+            output+=line[pointer]
+            pointer+=1
+        pointer = line.index(",")+1
+        memory=output
+        output = ""
+        while line[pointer] != ")":
+            output+=line[pointer]
+            pointer+=1
+        varNames.append(output)
+        varValues.append(input(memory))
+        print(varNames, varValues)
+        
     if "hop(" in line:
         pointer = line.index("(")+1
         while line[pointer] != ")":
@@ -30,6 +45,7 @@ def check(currentLine=int):
             sys.exit("Invalid line")
         else:
             newLine=int(output)
+
     if "print(" in line:
         pointer = line.index("(") +1
         while line[pointer] != ")":
@@ -39,6 +55,7 @@ def check(currentLine=int):
             if output.lstrip("!") in varNames:
                 output = varValues[varNames.index(output.lstrip("!"))]
         print(output)
+    
     if "var(" in line:
         pointer = line.index("(") +1
         while line[pointer] != "=":
