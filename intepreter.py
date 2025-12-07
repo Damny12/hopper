@@ -17,6 +17,26 @@ def check(currentLine=int):
     newLine = currentLine+1
     output=""
     pointer=0
+    if "//" in line:
+        currentLine+=1
+        return 
+    if "set(" in line:
+        pointer = line.index("(")+1
+        while line[pointer] != ",":
+            output+=line[pointer]
+            pointer+=1
+        pointer = line.index(",")+1
+        memory = varNames.index(output)
+        output = ""
+        while line[pointer] != ")":
+            output+=line[pointer]
+            pointer+=1
+        if "!" in output:
+            output = varValues[varNames.index(output.lstrip("!"))]
+        try:
+            varValues[memory] = int(output)
+        except:
+            varValues[memory] = output
     if "pow(" in line:
         pointer = line.index("(")+1
         while line[pointer] != ",":
@@ -101,7 +121,6 @@ def check(currentLine=int):
             pointer+=1
         varNames.append(output)
         varValues.append(input(memory))
-        print(varNames, varValues)
         
     if "hop(" in line:
         pointer = line.index("(")+1
@@ -109,8 +128,7 @@ def check(currentLine=int):
             output+=line[pointer]
             pointer+=1
         if "!" in output:
-            if output.lstrip("!") in varNames:
-                output = varValues[varNames.index(output.lstrip("!"))]
+            output = varValues[varNames.index(output.lstrip("!"))]
         if int(output) > len(codeLines) or int(output) < 0:
             print("This is an invalid line!")
             sys.exit("Invalid line")
@@ -123,8 +141,7 @@ def check(currentLine=int):
             output+=line[pointer]
             pointer+=1
         if "!" in output:
-            if output.lstrip("!") in varNames:
-                output = varValues[varNames.index(output.lstrip("!"))]
+            output = varValues[varNames.index(output.lstrip("!"))]
         print(output)
     
     if "var(" in line:
@@ -138,6 +155,8 @@ def check(currentLine=int):
         while line[pointer] != ")":
             output+=line[pointer]
             pointer+=1
+        if "!" in output:
+            output = varValues[varNames.index(output.lstrip("!"))]
         try:
             output = int(output)
             varValues.append(output)
