@@ -120,7 +120,11 @@ def check(currentLine=int):
             output+=line[pointer]
             pointer+=1
         varNames.append(output)
-        varValues.append(input(memory))
+        try:
+            memory = int(input(memory))
+        except:
+            print("no num")
+        varValues.append(memory)
         
     if "hop(" in line:
         pointer = line.index("(")+1

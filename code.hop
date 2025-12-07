@@ -8,6 +8,6 @@ print(!food)
 
 print(Addition)
 input(Input num 1: ,num1)
-input(Input num2: ,num2)
+input(Input num 2: ,num2)
 add(num1,!num2)
 print(!num1)
