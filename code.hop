@@ -1,14 +1,13 @@
-var(foo=hello)
-add(foo, hi)
-print(!foo)
-var(boo= 2)
-add(boo, 3)
-print(!boo)
-add(boo, -3)
-print(!boo)
-mult(boo, 6)
-print(!boo)
-div(boo, 3)
-print(!boo)
-pow(boo,2)
-print(!boo)
+// this is a simple favourite food inputter
+
+input(What is your favourite food? ,food)
+print(My favourite food is also)
+print(!food)
+
+//  A simple adder
+
+print(Addition)
+input(Input num 1: ,num1)
+input(Input num2: ,num2)
+add(num1,!num2)
+print(!num1)
